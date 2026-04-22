@@ -1,0 +1,30 @@
+" move the key to the beginning of a line
+nnoremap H 0
+
+" move the key to the end of a line
+nnoremap L $
+
+" change the working directory to the file you are opening and only locally
+nnoremap <leader>cd :lcd %:h<CR>
+
+" close the brackets automatically 
+inoremap (<leader><leader> ()<Esc>
+inoremap {<leader><leader> {}<Esc>
+inoremap {<leader><leader> {}<Esc>
+inoremap [<leader><leader> []<Esc>
+inoremap <<leader><leader> <><Esc>
+inoremap <leader><Tab> <Space><Space><Space><Space>
+
+" autosave on esc when in insert mode
+inoremap <esc> <esc>:w<cr>
+
+" surround texts on visual marked text
+vnoremap '' di''<esc>P
+vnoremap "" di""<esc>P
+vnoremap [[ di[]<esc>P
+vnoremap {{ di{}<esc>P
+vnoremap (( di()<esc>P
+vnoremap << di<><esc>P
+
+
+

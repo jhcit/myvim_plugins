@@ -1,0 +1,16 @@
+{
+    "python.pythonPath": "python3",
+    "python.linting.ruffEnabled": true,
+    "python.linting.mypyEnabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pydocstyleEnabled": true,
+    "python.formatting.provider": "ruff",
+    "coc.preferences.formatOnType": true,
+    "pyright.inlayHints.parameterTypes": false,
+    "pyright.inlayHints.variableTypes": false,
+    "pyright.inlayHints.functionReturnTypes": false,
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/21.1.0/clangd_21.1.0/bin/clangd",
+    "suggest.noselect": true,
+    "pydocstring.enable": true,
+    "suggest.autoTrigger": "none",
+}

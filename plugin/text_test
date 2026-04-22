@@ -1,0 +1,5 @@
+return person.get_pets(type="cat", fluffy_only=True)
+return person.get_pets[type="cat", fluffy_only=True]
+return person.get_pets<type="cat", fluffy_only=True>
+
+
