@@ -26,5 +26,8 @@ vnoremap {{ di{}<esc>P
 vnoremap (( di()<esc>P
 vnoremap << di<><esc>P
 
-
-
+" Nerd tree related see github.com/preservim/nerdtree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
