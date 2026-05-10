@@ -8,11 +8,11 @@ nnoremap L $
 nnoremap <leader>cd :lcd %:h<CR>
 
 " close the brackets automatically 
-inoremap (<leader><leader> ()<Esc>
-inoremap {<leader><leader> {}<Esc>
-inoremap {<leader><leader> {}<Esc>
-inoremap [<leader><leader> []<Esc>
-inoremap <<leader><leader> <><Esc>
+nnoremap <leader>( i()<Esc>
+nnoremap <leader>{ i{}<Esc>
+nnoremap <leader>[ i[]<Esc>
+nnoremap <leader>< i<><Esc>
+
 inoremap <leader><Tab> <Space><Space><Space><Space>
 
 " autosave on esc when in insert mode
