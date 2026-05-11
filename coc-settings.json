@@ -6,7 +6,6 @@
     "python.linting.pylintEnabled": true,
     "python.linting.pydocstyleEnabled": true,
     "python.formatting.provider": "ruff",
-    "coc.preferences.formatOnType": true,
     "pyright.inlayHints.parameterTypes": false,
     "pyright.inlayHints.variableTypes": false,
     "pyright.inlayHints.functionReturnTypes": false,
@@ -21,5 +20,7 @@
     ],
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.cargo.features": "all",
-    "rust-analyzer.cargo.allTargets": false
+    "rust-analyzer.cargo.allTargets": false,
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "coc.preferences.formatOnType": true
 }
