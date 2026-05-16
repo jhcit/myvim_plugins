@@ -1,5 +1,4 @@
 command! ReSourceAll call SourceAllScripts()
-
 function! SourceAllScripts()
     redir => s
     silent scriptnames
@@ -12,4 +11,10 @@ function! SourceAllScripts()
         endif
     endfor
 endfunction
+
+command! -nargs=1 EndWithChar call EndWithCharFunc(<f-args>)
+function! EndWithCharFunc(endchar)
+    :execute "normal! mqA" . a:endchar . "\<esc>`q"
+endfunction
+
 
