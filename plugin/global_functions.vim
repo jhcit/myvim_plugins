@@ -17,17 +17,17 @@ function! EndWithCharFunc(endchar)
     :execute "normal! mqA" . a:endchar . "\<esc>`q"
 endfunction
 
-command! -nargs=* SearchInFile call SearchInFileFunc(<f-args>)
-function! SearchInFileFunc(s_pattern, ...)
-    let pattern = a:s_pattern
-    let path = get(a:, 1, "./")
-    let file_pattern = get(a:, 2, "*")
+command! -nargs=+ SearchInFile call SearchInFileFunc(<f-args>)
+function! SearchInFileFunc(pattern, path, ...)
+    let l:file_pattern = a:0 > 0 ? a:1 : '*'
+    
+    " Bygg upp söksträngen för vimgrep
+    let l:search_path = a:path . '/**/' . l:file_pattern
 
-    :execute "echom \"not implemented yet\" "
-    :execute "echom \"Searching for \" . pattern"
-    :execute "echom \"Searching in \"  . path"
-    :execute "echom \"Searching on files \"  . file_pattern"
+    " Kör vimgrep. 'j' gör att Vim inte hoppar till första träffen direkt
+    execute 'vimgrep /' . a:pattern . '/j ' . l:search_path
+
+    " Öppna quickfix-fönstret
+    copen
 endfunction
-
-
 
