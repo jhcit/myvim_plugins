@@ -18,3 +18,6 @@ set smartindent
 set softtabstop=4
 set statusline=%f
 set tabstop=4
+set listchars=tab:>-,space:.,trail:.,eol:$
+set nu
+set textwidth=100
