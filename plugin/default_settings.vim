@@ -7,7 +7,7 @@ filetype plugin indent on
 colorscheme industry
 
 set autoindent
-set clipboard+=unnamed
+set clipboard=unnamedplus
 set expandtab
 set laststatus=2
 set mouse=a
