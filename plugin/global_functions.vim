@@ -31,3 +31,12 @@ function! SearchInFileFunc(pattern, path, ...)
     copen
 endfunction
 
+function! SafeBufferCycle(direction)
+    let l:cmd = a:direction > 0 ? 'bnext' : 'bprev'
+    execute l:cmd
+    " Loop again if the new buffer is NERDTree or a non-file buffer
+    while &buftype ==# 'nofile' || bufname('%') =~# 'NERD_tree'
+        execute l:cmd
+    endwhile
+endfunction
+
