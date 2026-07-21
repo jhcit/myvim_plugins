@@ -21,6 +21,10 @@
     "rust-analyzer.check.command": "clippy",
     "rust-analyzer.cargo.features": "all",
     "rust-analyzer.cargo.allTargets": false,
+    "rust-analyzer.trace.server": "verbose",
+    "rust-analyzer.checkOnSave.enable": false,
+    "rust-analyzer.cargo.buildScripts.enable": true,
+    "rust-analyzer.procMacro.enable": false,
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.formatOnType": true
 }
