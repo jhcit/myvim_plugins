@@ -41,17 +41,3 @@ vnoremap {{ di{}<esc>P
 vnoremap (( di()<esc>P
 vnoremap << di<><esc>P
 
-" Nerd tree related see github.com/preservim/nerdtree
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-" Smart bnext: Skip NERDTree when pressing Shift + Right Arrow
-nnoremap <silent> <S-Right> :call SafeBufferCycle(1)<CR>
-
-" Smart bprev: Skip NERDTree when pressing Shift + Left Arrow
-nnoremap <silent> <S-Left> :call SafeBufferCycle(-1)<CR>
-
-" Escape terminal and get to normal text edit mode press I to get back in terminal  mode
-tnoremap <Esc><Esc> <C-w>N
