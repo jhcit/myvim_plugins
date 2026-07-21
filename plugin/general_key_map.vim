@@ -28,7 +28,16 @@ nnoremap <leader>{ i{}<Esc>
 nnoremap <leader>[ i[]<Esc>
 nnoremap <leader>< i<><Esc>
 
-inoremap <leader><Tab> <Space><Space><Space><Space>
+" copy  to a specific register
+nnoremap <Leader>y :execute 'normal! "' . nr2char(getchar()) . 'y' . v:count1 . visualmode()<CR>
+vnoremap <Leader>y :<C-u>execute 'normal! gv"' . nr2char(getchar()) . 'y'<CR>
+
+" paste from a specific register
+nnoremap <Leader>p :execute 'normal! "' . nr2char(getchar()) . 'p'<CR>
+vnoremap <Leader>p :<C-u>execute 'normal! gv"' . nr2char(getchar()) . 'p'<CR>
+
+" Inserts tabs or spaces based on your exact shiftwidth/expandtab settings
+inoremap <expr> <Leader><Tab> pumvisible() ? "\<C-V>\<Tab>" : "\<C-G>u\<Tab>"
 
 " autosave on esc when in insert mode
 inoremap <esc> <esc>:w<cr>
@@ -40,4 +49,3 @@ vnoremap [[ di[]<esc>P
 vnoremap {{ di{}<esc>P
 vnoremap (( di()<esc>P
 vnoremap << di<><esc>P
-
