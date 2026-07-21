@@ -49,3 +49,7 @@ vnoremap [[ di[]<esc>P
 vnoremap {{ di{}<esc>P
 vnoremap (( di()<esc>P
 vnoremap << di<><esc>P
+
+" Cut and paste support. Configured with 'x' so it targets when you press 'v' to highlight text
+xnoremap p "_dP
+xnoremap X p
