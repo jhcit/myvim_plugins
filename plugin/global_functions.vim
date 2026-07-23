@@ -1,3 +1,6 @@
+" Source all files in folder
+command! ReSourceAll call SourceAllScripts()
+
 function! SourceAllScripts()
     redir => s
     silent scriptnames
@@ -11,9 +14,15 @@ function! SourceAllScripts()
     endfor
 endfunction
 
+" Adds an char at the end
+command! -nargs=1 EndWithChar call EndWithCharFunc(<f-args>)
+
 function! EndWithCharFunc(endchar)
     :execute "normal! mqA" . a:endchar . "\<esc>`q"
 endfunction
+
+" Search a String in a file
+command! -nargs=+ SearchInFile call SearchInFileFunc(<f-args>)
 
 function! SearchInFileFunc(pattern, path, ...)
     let l:file_pattern = a:0 > 0 ? a:1 : '*'
@@ -36,6 +45,9 @@ function! SafeBufferCycle(direction)
         execute l:cmd
     endwhile
 endfunction
+
+" Find cmds with path, from :commands list
+command! -nargs=1 FindCmdByPath call FindCmdByPath(<q-args>)
 
 function! FindCmdByPath(path_keyword)
     redraw!
@@ -98,3 +110,83 @@ function! PushYankToHistory()
     endif
 endfunction
 
+" Command to search a string in files
+command! -nargs=+ -complete=customlist,s:FindInFilesComplete FindInFiles call s:FindInFilesFunc(<q-args>)
+
+" The Main Search Execution Function
+function! s:FindInFilesFunc(args)
+    let l:pattern = ''
+    let l:remainder = ''
+
+    " Check if the user's input starts with a double quote
+    if a:args =~ '^"'
+        " A simple regex without nested groups:
+        " Group 1 captures everything between the first and second quote
+        " Group 2 captures everything after the second quote and its following space
+        let l:match = matchlist(a:args, '\v^"([^"]+)"\s+(.*)')
+        if len(l:match) > 0
+            let l:pattern = l:match[1]
+            let l:remainder = l:match[2]
+        endif
+    endif
+
+    " Fallback if no quotes were used or if the regex failed
+    if empty(l:pattern)
+        let l:first_space = match(a:args, '\s')
+        if l:first_space == -1
+            echoerr "Error: Missing path argument"
+            return
+        endif
+        let l:pattern = a:args[:l:first_space - 1]
+        let l:remainder = a:args[l:first_space + 1:]
+    endif
+
+    " Safety verification
+    if empty(l:remainder)
+        echoerr "Error: Missing path argument"
+        return
+    endif
+
+    " Parse remainder into base path and extensions
+    let l:parts = split(l:remainder, '\s\+')
+    let l:base_path = l:parts[0]
+    let l:base_path = substitute(l:base_path, '\/$', '', '') " Clean trailing slash
+
+    " Build final target path string
+    if len(l:parts) >= 2
+        let l:path_list = []
+        " Loop through all extension arguments starting from index 1
+        for l:ext in l:parts[1:]
+            if l:ext !~ '^\*'
+                let l:cleaned_ext = substitute(l:ext, '^\.', '', '')
+                let l:cleaned_ext = '*.' . l:cleaned_ext
+            else
+                let l:cleaned_ext = l:ext
+            endif
+            call add(l:path_list, l:base_path . '/**/' . l:cleaned_ext)
+        endfor
+        let l:final_paths = join(l:path_list, ' ')
+    else
+        let l:final_paths = l:base_path . '/**/*'
+    endif
+
+    " Execute search and open quickfix window
+    execute 'vimgrep /' . l:pattern . '/j ' . l:final_paths
+    copen
+endfunction
+
+" The Intelligent Tab-Completion Function
+function! s:FindInFilesComplete(ArgLead, CmdLine, CursorPos)
+    let l:parts = split(a:CmdLine[:a:CursorPos-1], '\s\+', 1)
+    let l:arg_count = len(l:parts)
+
+    if l:arg_count <= 2
+        return []
+    endif
+
+    if l:arg_count == 3
+        return map(getcompletion(a:ArgLead, 'file'), 'escape(v:val, " ")')
+    endif
+
+    return filter(['py', 'js', 'ts', 'html', 'css', 'md', 'json', 'cpp', 'h'], 'v:val =~ "^" . a:ArgLead')
+endfunction
