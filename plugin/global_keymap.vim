@@ -28,6 +28,10 @@ nnoremap <leader>{ i{}<Esc>
 nnoremap <leader>[ i[]<Esc>
 nnoremap <leader>< i<><Esc>
 
+" override the jump to current brackets, easier to jump at the end and start of a function
+nnoremap [f [{
+nnoremap ]f ]}
+
 " copy  to a specific register
 nnoremap <Leader>y :execute 'normal! "' . nr2char(getchar()) . 'y' . v:count1 . visualmode()<CR>
 vnoremap <Leader>y :<C-u>execute 'normal! gv"' . nr2char(getchar()) . 'y'<CR>
