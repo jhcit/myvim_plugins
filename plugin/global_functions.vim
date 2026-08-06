@@ -1,3 +1,23 @@
+" ============================================================================
+" FUNCTION EXPLANATION:
+" 1. l:current_buf captures the active buffer number using the '%' symbol.
+" 2. 'bprevious' switches the window to the last viewed buffer to preserve layout.
+" 3. The 'if' block checks if you only had one buffer open. If the current buffer
+"    number hasn't changed, 'enew' opens a fresh, blank canvas.
+" 4. 'execute' runs the 'bwipeout' command dynamically on the stored buffer ID,
+"    deleting it entirely from your buffer list.
+" ============================================================================
+command! CloseBuffer call CloseAndWipeBuffer()
+
+function! CloseAndWipeBuffer()
+    let l:current_buf = bufnr('%')
+    bprevious
+    if bufnr('%') == l:current_buf
+        enew
+    endif
+    execute 'bwipeout ' . l:current_buf
+endfunction
+
 " Source all files in folder
 command! ReSourceAll call SourceAllScripts()
 
