@@ -23,4 +23,4 @@ set nu
 set textwidth=100
 set laststatus=2
 set statusline=%f\ %m%=Line:\ %l,\ Column:\ %c\ [%y]
-
+set ignorecase
