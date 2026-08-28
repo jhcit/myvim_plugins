@@ -25,6 +25,7 @@
     "rust-analyzer.checkOnSave.enable": false,
     "rust-analyzer.cargo.buildScripts.enable": true,
     "rust-analyzer.procMacro.enable": false,
+    "rust-analyzer.server.path": "~/.cargo/bin/rust-analyzer",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.formatOnType": true
 }
