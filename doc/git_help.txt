@@ -1,0 +1,21 @@
+==============================================================================
+MY PERSONAL GIT HELP SHEET                                        *git-cheat*
+
+Jump to specific sections:
+- See status commands:                |git-status|
+- See split diff views:               |git-diffs|
+
+==============================================================================
+1. THE STATUS BUFFER                                             *git-status*
+
+Commands for `:G` status window:
+  -          Stage or unstage the file under your cursor.
+  cc         Open commit message buffer window.
+
+==============================================================================
+2. VIEWING UNSTAGED CHANGES                                       *git-diffs*
+
+Commands to check what changed:
+  dv         Open a vertical split diff view.
+  =          Toggle an inline diff overview.
+
